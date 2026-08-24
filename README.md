@@ -1,3 +1,7 @@
+# Image 
+<img width="1912" height="968" alt="Screenshot 2026-08-24 224203" src="https://github.com/user-attachments/assets/89e685ca-d7ae-40a7-aa47-c73b3978a9fc" />
+<img width="1912" height="966" alt="Screenshot 2026-08-24 224254" src="https://github.com/user-attachments/assets/9df7104d-f7d6-4ae3-82d8-3213f964e55b" />
+
 # 🛒 NeoBasket
 
 NeoBasket is a modern **full-stack e-commerce platform** designed to provide a complete online shopping experience with product management, inventory control, secure payments, order management, order tracking, and delivery partner management.
@@ -116,8 +120,3 @@ OUT_FOR_DELIVERY
 DELIVERED
 CANCELLED
 '''
-### Order Status
-
- <img width="1912" height="968" alt="Screenshot 2026-08-24 224203" src="https://github.com/user-attachments/assets/f5619b53-d25a-4163-ba29-3bbb7f3b976e" />
-<img width="1912" height="966" alt="Screenshot 2026-08-24 224254" src="https://github.com/user-attachments/assets/b1e8d469-e46e-4a76-9e86-9f61ba83f191" />
-
