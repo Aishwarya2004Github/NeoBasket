@@ -6,6 +6,7 @@ import { valideURLConvert } from "../utils/valideURLConvert"
 import { useNavigate } from "react-router-dom"
 import CategoryWiseProductDisplay from "../components/CategoryWiseProductDisplay"
 import AICopilot from "../components/AICopilot";
+import ShoppingRobot from "../components/ShoppingRobot";
 
 const Home = () => {
   const navigate = useNavigate()
@@ -219,6 +220,7 @@ const Home = () => {
         )}
       </div>
 <AICopilot />
+<ShoppingRobot />
     </section>
   )
 }

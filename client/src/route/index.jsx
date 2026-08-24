@@ -44,6 +44,13 @@ import AIFeatures from "../pages/AIFeatures";
 
 /*
 =========================================================
+AI SHOPPING
+=========================================================
+*/
+import AIShopping from "../pages/AIShopping";
+
+/*
+=========================================================
 ADMIN AI / STOCK MANAGEMENT
 =========================================================
 */
@@ -80,12 +87,27 @@ const router = createBrowserRouter([
 
 
             // =====================================================
-            // AI SHOP
+            // AI FEATURES
             // =====================================================
 
             {
                 path: "ai",
                 element: <AIFeatures />
+            },
+
+
+            // =====================================================
+            // AI SHOPPING ASSISTANT
+            //
+            // URL:
+            // http://localhost:5173/ai-shopping
+            //
+            // NO API KEY REQUIRED
+            // =====================================================
+
+            {
+                path: "ai-shopping",
+                element: <AIShopping />
             },
 
 
@@ -196,7 +218,7 @@ const router = createBrowserRouter([
 
 
                     // =================================================
-                    // ADMIN
+                    // ADMIN CATEGORY
                     // =================================================
 
                     {
@@ -211,6 +233,10 @@ const router = createBrowserRouter([
                     },
 
 
+                    // =================================================
+                    // ADMIN SUBCATEGORY
+                    // =================================================
+
                     {
                         path: "subcategory",
 
@@ -223,6 +249,10 @@ const router = createBrowserRouter([
                     },
 
 
+                    // =================================================
+                    // ADMIN UPLOAD PRODUCT
+                    // =================================================
+
                     {
                         path: "upload-product",
 
@@ -234,6 +264,10 @@ const router = createBrowserRouter([
 
                     },
 
+
+                    // =================================================
+                    // ADMIN PRODUCT
+                    // =================================================
 
                     {
                         path: "product",
