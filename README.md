@@ -116,5 +116,4 @@ OUT_FOR_DELIVERY
 DELIVERED
 CANCELLED
 
-## ✨ Image <img width="1912" height="968" alt="Screenshot 2026-08-24 224203" src="https://github.com/user-attachments/assets/f5619b53-d25a-4163-ba29-3bbb7f3b976e" />
-<img width="1912" height="966" alt="Screenshot 2026-08-24 224254" src="https://github.com/user-attachments/assets/b1e8d469-e46e-4a76-9e86-9f61ba83f191" />
+
