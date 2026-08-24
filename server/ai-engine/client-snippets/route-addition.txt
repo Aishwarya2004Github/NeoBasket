@@ -1,0 +1,18 @@
+1) Copy AIFeatures.jsx to:
+client/src/pages/AIFeatures.jsx
+
+2) In client/src/route/index.jsx add:
+
+import AIFeatures from "../pages/AIFeatures";
+
+Then inside the root children array add:
+
+{
+  path: "ai",
+  element: <AIFeatures/>
+},
+
+3) Create client/.env.local:
+VITE_AI_ENGINE_URL=http://localhost:8002
+
+No existing frontend file needs to be deleted.

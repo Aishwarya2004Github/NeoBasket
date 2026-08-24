@@ -1,0 +1,282 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id String @id @default(uuid())
+
+  name String
+
+  email String @unique
+
+  password String
+
+  avatar String?
+
+  mobile String?
+
+  refresh_token String?
+
+  forgot_password_expiry DateTime?
+
+  forgot_password_otp String?
+
+  last_login_date DateTime?
+
+  role UserRole @default(USER)
+
+  status UserStatus @default(Active)
+
+  verify_email Boolean @default(false)
+
+  addresses Address[]
+
+  cartProducts CartProduct[]
+
+  orders Order[]
+
+  createdAt DateTime @default(now())
+
+  updatedAt DateTime @updatedAt
+}
+
+model Address {
+  id String @id @default(uuid())
+
+  address_line String
+
+  city String
+
+  state String
+
+  pincode String
+
+  country String
+
+  mobile String?
+
+  status Boolean @default(true)
+
+  userId String
+
+  user User @relation(fields: [userId], references: [id])
+
+  orders Order[]
+
+  createdAt DateTime @default(now())
+
+  updatedAt DateTime @updatedAt
+}
+
+model Category {
+  id String @id @default(uuid())
+
+  name String
+
+  image String
+
+  subCategories SubCategory[]
+
+  products Product[]
+}
+
+model SubCategory {
+  id String @id @default(uuid())
+
+  name String
+
+  image String
+
+  categoryId String
+
+  category Category @relation(fields: [categoryId], references: [id])
+
+  products Product[]
+
+  createdAt DateTime @default(now())
+
+  updatedAt DateTime @updatedAt
+}
+
+model Product {
+  id String @id @default(uuid())
+
+  name String
+
+  image String[]
+
+  categoryId String
+
+  subCategoryId String
+
+  category Category @relation(fields: [categoryId], references: [id])
+
+  subCategory SubCategory @relation(fields: [subCategoryId], references: [id])
+
+  unit String?
+
+  stock Int?
+
+  price Float?
+
+  discount Float?
+
+  description String?
+
+  more_details Json?
+
+  publish Boolean @default(true)
+
+  cartProducts CartProduct[]
+
+  orders Order[]
+
+  createdAt DateTime @default(now())
+
+  updatedAt DateTime @updatedAt
+}
+
+model CartProduct {
+  id String @id @default(uuid())
+
+  quantity Int @default(1)
+
+  productId String
+
+  userId String
+
+  product Product @relation(fields: [productId], references: [id])
+
+  user User @relation(fields: [userId], references: [id])
+
+  createdAt DateTime @default(now())
+
+  updatedAt DateTime @updatedAt
+}
+
+model Order {
+  id String @id @default(uuid())
+
+  orderId String @unique
+
+  paymentId String?
+
+  payment_status String?
+
+  subTotalAmt Float @default(0)
+
+  totalAmt Float @default(0)
+
+  product_name String?
+
+  product_image String[]
+
+  quantity Int @default(1)
+
+  userId String
+
+  productId String
+
+  delivery_addressId String
+
+  deliveryPartnerId String?
+
+  status OrderStatus @default(PENDING)
+
+  confirmedAt DateTime?
+
+  packedAt DateTime?
+
+  shippedAt DateTime?
+
+  dispatchedAt DateTime?
+
+  outForDeliveryAt DateTime?
+
+  deliveredAt DateTime?
+
+  cancelledAt DateTime?
+
+  user User @relation(fields: [userId], references: [id])
+
+  product Product @relation(fields: [productId], references: [id])
+
+  delivery_address Address @relation(fields: [delivery_addressId], references: [id])
+
+  deliveryPartner DeliveryPartner? @relation(fields: [deliveryPartnerId], references: [id])
+
+  cancelReason String?
+
+  cancelledBy String?
+
+  createdAt DateTime @default(now())
+
+  updatedAt DateTime @updatedAt
+}
+
+model DeliveryPartner {
+
+  id String @id @default(uuid())
+
+  employeeId String @unique
+
+  name String
+
+  age Int
+
+  gender String
+
+  mobile String
+
+  email String @unique
+
+  password String
+
+  address String
+
+  photo String?
+
+  orders Order[]
+
+  createdAt DateTime @default(now())
+
+  updatedAt DateTime @updatedAt
+
+}
+
+enum UserStatus {
+  Active
+
+  Inactive
+
+  Suspended
+}
+
+enum UserRole {
+  ADMIN
+
+  USER
+}
+
+enum OrderStatus {
+  PENDING
+
+  ACCEPTED
+
+  PACKED
+
+  SHIPPED
+
+  DISPATCHED
+
+  OUT_FOR_DELIVERY
+
+  DELIVERED
+
+  CANCELLED
+}
