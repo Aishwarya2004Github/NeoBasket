@@ -12,6 +12,13 @@ import jwt from 'jsonwebtoken'
 export async function registerUserController(request, response) {
     try {
         const { name, email, password } = request.body
+        if (password.length < 8 || password.length > 12) {
+    return response.status(400).json({
+        message: "Password must be between 8 and 12 characters",
+        error: true,
+        success: false
+    })
+}
 
         if (!name || !email || !password) {
             return response.status(400).json({
@@ -275,10 +282,18 @@ export async function updateUserDetails(request,response){
 
         let hashPassword = ""
 
-        if(password){
-            const salt = await bcryptjs.genSalt(10)
-            hashPassword = await bcryptjs.hash(password,salt)
-        }
+        if (password) {
+    if (password.length < 8 || password.length > 12) {
+        return response.status(400).json({
+            message: "Password must be between 8 and 12 characters",
+            error: true,
+            success: false
+        })
+    }
+
+    const salt = await bcryptjs.genSalt(10)
+    hashPassword = await bcryptjs.hash(password, salt)
+}
 
         const updateUser = await prisma.user.update({
   where:{
@@ -454,13 +469,13 @@ export async function resetpassword(request,response){
             })
         }
 
-        if(newPassword !== confirmPassword){
-            return response.status(400).json({
-                message : "newPassword and confirmPassword must be same.",
-                error : true,
-                success : false,
-            })
-        }
+        if (newPassword.length < 8 || newPassword.length > 12) {
+    return response.status(400).json({
+        message: "Password must be between 8 and 12 characters",
+        error: true,
+        success: false
+    })
+}
 
         const salt = await bcryptjs.genSalt(10)
         const hashPassword = await bcryptjs.hash(newPassword,salt)
